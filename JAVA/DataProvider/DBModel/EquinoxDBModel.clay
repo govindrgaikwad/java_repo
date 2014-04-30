@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<clay-model clay-version="2.0.1">
+<database-model author="Anand Vidyasagar" begin-script="" end-script="" id="962b65e:1428ee8b079:-8000" name="ObjectModellet" sql-dialect-id="jp.azzurri.clay.dialect.MySQL_5_0_Dialect" version="1.0">
+<schema-list>
+<schema alias="DEFAULT" id="962b65e:1428ee8b079:-7ffd" name="DEFAULT">
+<table-list>
+<table alias="OBJECT_RELATION" id="33bf4074:142b8290867:-7e37" name="OBJECT_RELATION">
+<column-list>
+<column auto-increment="false" column-size="10" decimal-digits="0" default-value="" id="1289eb07:14394d30917:-7fcd" mandatory="true" name="RELATIONID">
+<data-type name="CHAR" selected-variant-pattern="CHAR(%n)"/>
+</column>
+<column alias="TREEID" auto-increment="false" column-size="10" decimal-digits="0" default-value="" id="33bf4074:142b8290867:-7e33" mandatory="true" name="TREEID">
+<data-type name="INT" selected-variant-pattern="INT(%n) UNSIGNED"/>
+</column>
+<column alias="RELATION_NAME" auto-increment="false" column-size="50" decimal-digits="0" default-value="" id="33bf4074:142b8290867:-7e32" mandatory="true" name="RELATION_NAME">
+<data-type name="VARCHAR" selected-variant-pattern="VARCHAR(%n)"/>
+</column>
+<column alias="RELATION_NAME_CAMELCASE" auto-increment="false" column-size="50" decimal-digits="0" default-value="" id="33bf4074:142b8290867:-7e31" mandatory="false" name="RELATION_NAME_CAMELCASE">
+<data-type name="VARCHAR" selected-variant-pattern="VARCHAR(%n)"/>
+</column>
+<column alias="CARDINALITY" auto-increment="false" column-size="1" decimal-digits="0" default-value="" id="33bf4074:142b8290867:-7e30" mandatory="false" name="CARDINALITY">
+<data-type name="CHAR" selected-variant-pattern="CHAR(%n)"/>
+</column>
+</column-list>
+<primary-key id="33bf4074:142b8290867:-7e36" name="PK_OBJECT_RELATION">
+<primary-key-column name="RELATIONID"/>
+</primary-key>
+<foreign-key-list>
+<foreign-key id="33bf4074:142b8290867:-7e1c" name="FK_OBJECT_RELATION_1" on-delete="UNSPECIFIED" on-update="UNSPECIFIED" referenced-key="PK_OBJECT_TREE" referenced-table="OBJECT_TREE" referenced-table-schema="ECM_META" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="">
+<foreign-key-column column-name="TREEID" referenced-key-column-name="TREEID"/>
+</foreign-key>
+</foreign-key-list>
+</table>
+<table id="3e4b65e6:1437bba26c1:-7fd7" name="OBJECT_VERSION">
+<column-list>
+<column auto-increment="true" column-size="10" decimal-digits="0" default-value="" id="3e4b65e6:1437bba26c1:-7fd1" mandatory="true" name="VERSIONID">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER(%n)"/>
+</column>
+<column auto-increment="false" column-size="55" decimal-digits="0" default-value="" id="3e4b65e6:1437bba26c1:-7fd0" mandatory="true" name="VERSION_NAME">
+<data-type name="VARCHAR" selected-variant-pattern="VARCHAR(%n)"/>
+</column>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="3e4b65e6:1437bba26c1:-7ee0" mandatory="false" name="EFFECTIVE_FROM">
+<data-type name="DATETIME" selected-variant-pattern="DATETIME"/>
+</column>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="3e4b65e6:1437bba26c1:-7edf" mandatory="false" name="EFFECTIVE_TO">
+<data-type name="DATETIME" selected-variant-pattern="DATETIME"/>
+</column>
+</column-list>
+<primary-key id="3e4b65e6:1437bba26c1:-7fd6" name="PK_OBJECT_VERSION">
+<primary-key-column name="VERSIONID"/>
+</primary-key>
+</table>
+<table id="3e4b65e6:1437bba26c1:-7fcf" name="OBJECT_VERSION_ATTRIB_XREF">
+<column-list>
+<column auto-increment="false" column-size="10" decimal-digits="0" default-value="" id="226fd561:1438a7455fa:-7fd9" mandatory="true" name="OBJ_VERID">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER(%n) UNSIGNED"/>
+</column>
+<column auto-increment="false" column-size="10" decimal-digits="0" default-value="" id="3e4b65e6:1437bba26c1:-7fb8" mandatory="true" name="VERSIONID">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER(%n) UNSIGNED"/>
+</column>
+<column alias="OID" auto-increment="false" column-size="10" decimal-digits="0" default-value="" id="3e4b65e6:1437bba26c1:-7f97" mandatory="true" name="OID">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER(%n) UNSIGNED"/>
+</column>
+<column alias="ATTRID" auto-increment="false" column-size="10" decimal-digits="0" default-value="" id="3e4b65e6:1437bba26c1:-7f6f" mandatory="true" name="ATTRID">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER(%n) UNSIGNED"/>
+</column>
+</column-list>
+<primary-key id="3e4b65e6:1437bba26c1:-7fce" name="PK_OBJECT_VERSION_ATTRIB_XREF">
+<primary-key-column name="OBJ_VERID"/>
+</primary-key>
+<foreign-key-list>
+<foreign-key id="3e4b65e6:1437bba26c1:-7fba" name="FK_OBJECT_VERSION_XREF_1" on-delete="UNSPECIFIED" on-update="UNSPECIFIED" referenced-key="PK_OBJECT_VERSION" referenced-table="OBJECT_VERSION" referenced-table-schema="DEFAULT" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="">
+<foreign-key-column column-name="VERSIONID" referenced-key-column-name="VERSIONID"/>
+</foreign-key>
+<foreign-key id="3e4b65e6:1437bba26c1:-7f99" name="FK_OBJECT_VERSION_XREF_2" on-delete="UNSPECIFIED" on-update="UNSPECIFIED" referenced-key="PK_OBJECT" referenced-table="OBJECT" referenced-table-schema="ECM_META" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="">
+<foreign-key-column column-name="OID" referenced-key-column-name="OID"/>
+</foreign-key>
+<foreign-key id="3e4b65e6:1437bba26c1:-7f71" name="FK_OBJECT_VERSION_XREF_3" on-delete="UNSPECIFIED" on-update="UNSPECIFIED" referenced-key="PK_ATTRIBUTE" referenced-table="ATTRIBUTE" referenced-table-schema="ECM_META" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="">
+<foreign-key-column column-name="ATTRID" referenced-key-column-name="ATTRID"/>
+</foreign-key>
+</foreign-key-list>
+</table>
+<table id="3e4b65e6:1437bba26c1:-7ede" name="RELATION_KEYS">
+<column-list>
+<column auto-increment="false" column-size="10" decimal-digits="0" default-value="" id="3e4b65e6:1437bba26c1:-7eda" mandatory="true" name="RELATIONID">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER(%n)"/>
+</column>
+<column alias="LHSATTRID" auto-increment="false" column-size="10" decimal-digits="0" default-value="" id="3e4b65e6:1437bba26c1:-7ea5" mandatory="true" name="LHSATTRID">
+<data-type name="INT" selected-variant-pattern="INT(%n) UNSIGNED"/>
+</column>
+<column alias="RHSATTRID" auto-increment="false" column-size="10" decimal-digits="0" default-value="" id="3e4b65e6:1437bba26c1:-7e11" mandatory="true" name="RHSATTRID">
+<data-type name="INT" selected-variant-pattern="INT(%n) UNSIGNED"/>
+</column>
+</column-list>
+<primary-key id="3e4b65e6:1437bba26c1:-7edd" name="PK_RELATION_KEYS">
+<primary-key-column name="RELATIONID"/>
+</primary-key>
+<foreign-key-list>
+<foreign-key id="3e4b65e6:1437bba26c1:-7ec3" name="FK_RELATION_KEYS_1" on-delete="UNSPECIFIED" on-update="UNSPECIFIED" referenced-key="PK_OBJECT_RELATION" referenced-table="OBJECT_RELATION" referenced-table-schema="DEFAULT" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="">
+<foreign-key-column column-name="RELATIONID" referenced-key-column-name="RELATIONID"/>
+</foreign-key>
+<foreign-key id="3e4b65e6:1437bba26c1:-7ea7" name="FK_RELATION_KEYS_2" on-delete="UNSPECIFIED" on-update="UNSPECIFIED" referenced-key="PK_ATTRIBUTE" referenced-table="ATTRIBUTE" referenced-table-schema="ECM_META" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="">
+<foreign-key-column column-name="LHSATTRID" referenced-key-column-name="ATTRID"/>
+</foreign-key>
+<foreign-key id="3e4b65e6:1437bba26c1:-7e75" name="FK_RELATION_KEYS_3" on-delete="UNSPECIFIED" on-update="UNSPECIFIED" referenced-key="PK_ATTRIBUTE" referenced-table="ATTRIBUTE" referenced-table-schema="ECM_META" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="">
+<foreign-key-column column-name="LHSATTRID" referenced-key-column-name="ATTRID"/>
+</foreign-key>
+<foreign-key id="3e4b65e6:1437bba26c1:-7e13" name="FK_RELATION_KEYS_4" on-delete="UNSPECIFIED" on-update="UNSPECIFIED" referenced-key="PK_ATTRIBUTE" referenced-table="ATTRIBUTE" referenced-table-schema="ECM_META" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="">
+<foreign-key-column column-name="LHSATTRID" referenced-key-column-name="ATTRID"/>
+</foreign-key>
+</foreign-key-list>
+</table>
+<table id="226fd561:1438a7455fa:-7fe3" name="NUMERIC_DATA_VALUE">
+<column-list>
+<column auto-increment="false" column-size="10" decimal-digits="0" default-value="" id="226fd561:1438a7455fa:-7fdf" mandatory="true" name="VALUEID">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER(%n) UNSIGNED"/>
+</column>
+<column auto-increment="false" column-size="10" decimal-digits="0" default-value="" id="226fd561:1438a7455fa:-7f9d" mandatory="true" name="OBJ_VERID">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER(%n) UNSIGNED"/>
+</column>
+<column auto-increment="false" column-size="10" decimal-digits="10" default-value="" id="226fd561:1438a7455fa:-7f51" mandatory="true" name="VALUE">
+<data-type name="DECIMAL" selected-variant-pattern="DECIMAL(%p, %s)"/>
+</column>
+<column auto-increment="false" column-size="10" decimal-digits="0" default-value="" id="226fd561:1438a7455fa:-7eb1" mandatory="true" name="OBJ_INSTANCEID">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER(%n) UNSIGNED"/>
+</column>
+<column auto-increment="false" column-size="10" decimal-digits="0" default-value="" id="226fd561:1438a7455fa:-7ea4" mandatory="false" name="PARENT_OBJ_INSTANCEID">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER(%n) UNSIGNED"/>
+</column>
+<column auto-increment="false" column-size="5" decimal-digits="0" default-value="" id="226fd561:1438a7455fa:-7ea1" mandatory="false" name="ROWID_INFO">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER(%n) UNSIGNED"/>
+</column>
+</column-list>
+<primary-key id="226fd561:1438a7455fa:-7fe2" name="PK_NUMERIC_DATA_VALUE">
+<primary-key-column name="VALUEID"/>
+</primary-key>
+<foreign-key-list>
+<foreign-key id="226fd561:1438a7455fa:-7f9f" name="FK_DATA_VALUE_1" on-delete="UNSPECIFIED" on-update="UNSPECIFIED" referenced-key="PK_OBJECT_VERSION_ATTRIB_XREF" referenced-table="OBJECT_VERSION_ATTRIB_XREF" referenced-table-schema="DEFAULT" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="">
+<foreign-key-column column-name="OBJ_VERID" referenced-key-column-name="OBJ_VERID"/>
+</foreign-key>
+</foreign-key-list>
+</table>
+<table id="226fd561:1438a7455fa:-7f4c" name="STRING_DATA_VALUE">
+<column-list>
+<column auto-increment="false" column-size="10" decimal-digits="0" default-value="" id="226fd561:1438a7455fa:-7f4a" mandatory="true" name="VALUEID">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER(%n) UNSIGNED"/>
+</column>
+<column auto-increment="false" column-size="10" decimal-digits="0" default-value="" id="226fd561:1438a7455fa:-7f49" mandatory="true" name="OBJ_VERID">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER(%n) UNSIGNED"/>
+</column>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="226fd561:1438a7455fa:-7f48" mandatory="true" name="VALUE">
+<data-type name="LONGTEXT" selected-variant-pattern="LONGTEXT"/>
+</column>
+<column auto-increment="false" column-size="10" decimal-digits="0" default-value="" id="226fd561:1438a7455fa:-7eb4" mandatory="true" name="OBJ_INSTANCEID">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER(%n) UNSIGNED"/>
+</column>
+<column auto-increment="false" column-size="10" decimal-digits="0" default-value="" id="226fd561:1438a7455fa:-7ea7" mandatory="false" name="PARENT_OBJ_INSTANCEID">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER(%n) UNSIGNED"/>
+</column>
+<column auto-increment="false" column-size="5" decimal-digits="0" default-value="" id="226fd561:1438a7455fa:-7e9e" mandatory="false" name="ROWID_INFO">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER(%n) UNSIGNED"/>
+</column>
+</column-list>
+<primary-key id="226fd561:1438a7455fa:-7f47" name="PK_STRING_DATA_VALUE">
+<primary-key-column name="VALUEID"/>
+</primary-key>
+<foreign-key-list>
+<foreign-key id="226fd561:1438a7455fa:-7f22" name="FK_STRING_DATA_VALUE_1" on-delete="UNSPECIFIED" on-update="UNSPECIFIED" referenced-key="PK_OBJECT_VERSION_ATTRIB_XREF" referenced-table="OBJECT_VERSION_ATTRIB_XREF" referenced-table-schema="DEFAULT" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="">
+<foreign-key-column column-name="OBJ_VERID" referenced-key-column-name="OBJ_VERID"/>
+</foreign-key>
+</foreign-key-list>
+</table>
+<table id="226fd561:1438a7455fa:-7ef8" name="DATE_DATA_VALUE">
+<column-list>
+<column auto-increment="false" column-size="10" decimal-digits="0" default-value="" id="226fd561:1438a7455fa:-7ef6" mandatory="true" name="VALUEID">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER(%n) UNSIGNED"/>
+</column>
+<column auto-increment="false" column-size="10" decimal-digits="0" default-value="" id="226fd561:1438a7455fa:-7ef5" mandatory="true" name="OBJ_VERID">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER(%n) UNSIGNED"/>
+</column>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="226fd561:1438a7455fa:-7ef4" mandatory="true" name="VALUE">
+<data-type name="DATETIME" selected-variant-pattern="DATETIME"/>
+</column>
+<column auto-increment="false" column-size="10" decimal-digits="0" default-value="" id="226fd561:1438a7455fa:-7eb7" mandatory="true" name="OBJ_INSTANCEID">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER(%n) UNSIGNED"/>
+</column>
+<column auto-increment="false" column-size="10" decimal-digits="0" default-value="" id="226fd561:1438a7455fa:-7eae" mandatory="false" name="PARENT_OBJ_INSTANCEID">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER(%n) UNSIGNED"/>
+</column>
+<column auto-increment="false" column-size="5" decimal-digits="0" default-value="" id="226fd561:1438a7455fa:-7e9b" mandatory="false" name="ROWID_INFO">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER(%n) UNSIGNED"/>
+</column>
+</column-list>
+<primary-key id="226fd561:1438a7455fa:-7ef3" name="PK_DATE_DATA_VALUE">
+<primary-key-column name="VALUEID"/>
+</primary-key>
+<foreign-key-list>
+<foreign-key id="226fd561:1438a7455fa:-7edf" name="FK_DATE_DATA_VALUE_1" on-delete="UNSPECIFIED" on-update="UNSPECIFIED" referenced-key="PK_OBJECT_VERSION_ATTRIB_XREF" referenced-table="OBJECT_VERSION_ATTRIB_XREF" referenced-table-schema="DEFAULT" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="">
+<foreign-key-column column-name="OBJ_VERID" referenced-key-column-name="OBJ_VERID"/>
+</foreign-key>
+</foreign-key-list>
+</table>
+</table-list>
+</schema>
+<schema alias="ECM_META" id="962b65e:1428ee8b079:-7ff8" name="ECM_META">
+<table-list>
+<table alias="OBJECT" id="962b65e:1428ee8b079:-7fff" name="OBJECT">
+<column-list>
+<column alias="OID" auto-increment="true" column-size="10" decimal-digits="0" default-value="" id="962b65e:1428ee8b079:-7ff2" mandatory="true" name="OID">
+<data-type name="INT" selected-variant-pattern="INT(%n) UNSIGNED"/>
+</column>
+<column alias="ONAME" auto-increment="false" column-size="50" decimal-digits="0" default-value="" id="962b65e:1428ee8b079:-7ff1" mandatory="true" name="OBJECT_NAME">
+<data-type name="VARCHAR" selected-variant-pattern="VARCHAR(%n)"/>
+</column>
+<column alias="LOCKED" auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="962b65e:1428ee8b079:-7fee" mandatory="false" name="LOCKED">
+<data-type name="BOOLEAN" selected-variant-pattern="BOOLEAN"/>
+</column>
+<column auto-increment="false" column-size="10" decimal-digits="0" default-value="" id="3e4b65e6:1437bba26c1:-7fd9" mandatory="false" name="VERSION">
+<data-type name="CHAR" selected-variant-pattern="CHAR(%n)"/>
+</column>
+</column-list>
+<primary-key id="962b65e:1428ee8b079:-7ffe" name="PK_OBJECT">
+<primary-key-column name="OID"/>
+</primary-key>
+</table>
+<table id="962b65e:1428ee8b079:-7fe5" name="ATTRIBUTE">
+<column-list>
+<column alias="ATTRID" auto-increment="true" column-size="10" decimal-digits="0" default-value="" id="962b65e:1428ee8b079:-7fe1" mandatory="true" name="ATTRID">
+<data-type name="INT" selected-variant-pattern="INT(%n) UNSIGNED"/>
+</column>
+<column alias="OID" auto-increment="false" column-size="10" decimal-digits="0" default-value="" id="33bf4074:142b8290867:-7fdd" mandatory="false" name="OID">
+<data-type name="INT" selected-variant-pattern="INT(%n) UNSIGNED"/>
+</column>
+<column auto-increment="false" column-size="50" decimal-digits="0" default-value="" id="962b65e:1428ee8b079:-7fe0" mandatory="true" name="ATTR_NAME">
+<data-type name="VARCHAR" selected-variant-pattern="VARCHAR(%n)"/>
+</column>
+<column auto-increment="false" column-size="50" decimal-digits="0" default-value="" id="12f4f99b:1429e4497e7:-7ff3" mandatory="false" name="ATTR_NAME_CAMELCASE">
+<data-type name="VARCHAR" selected-variant-pattern="VARCHAR(%n)"/>
+</column>
+<column auto-increment="false" column-size="50" decimal-digits="0" default-value="" id="962b65e:1428ee8b079:-7fdf" mandatory="false" name="ATTR_TYPE" remarks="Possible Values: String, Integer, Double, Boolean, XML">
+<data-type name="VARCHAR" selected-variant-pattern="VARCHAR(%n)"/>
+</column>
+<column auto-increment="false" column-size="1" decimal-digits="0" default-value="" id="962b65e:1428ee8b079:-7fd5" mandatory="false" name="CARDINALITY" remarks="Valid values: S - Single, M - Multiple">
+<data-type name="CHAR" selected-variant-pattern="CHAR(%n)"/>
+</column>
+<column auto-increment="false" column-size="3" decimal-digits="0" default-value="" id="12f4f99b:1429e4497e7:-7ff0" mandatory="false" name="ATTR_LENGTH">
+<data-type name="INT" selected-variant-pattern="INT(%n) UNSIGNED"/>
+</column>
+<column auto-increment="false" column-size="2" decimal-digits="0" default-value="" id="12f4f99b:1429e4497e7:-7fed" mandatory="false" name="ATTR_PRECISION">
+<data-type name="INT" selected-variant-pattern="INT(%n) UNSIGNED"/>
+</column>
+<column auto-increment="false" column-size="10" decimal-digits="0" default-value="" id="962b65e:1428ee8b079:-7eb5" mandatory="false" name="ATTR_TYPE_OID">
+<data-type name="INT" selected-variant-pattern="INT(%n) UNSIGNED"/>
+</column>
+<column auto-increment="false" column-size="90" decimal-digits="0" default-value="" id="12f4f99b:1429e4497e7:-7fe7" mandatory="false" name="EDIT_REGEX">
+<data-type name="VARCHAR" selected-variant-pattern="VARCHAR(%n)"/>
+</column>
+<column auto-increment="false" column-size="90" decimal-digits="0" default-value="" id="12f4f99b:1429e4497e7:-7fe6" mandatory="false" name="ATTR_FORMATTER">
+<data-type name="VARCHAR" selected-variant-pattern="VARCHAR(%n)"/>
+</column>
+<column alias="SYNTHETIC" auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="33bf4074:142b8290867:-7ea2" mandatory="false" name="SYNTHETIC">
+<data-type name="BOOLEAN" selected-variant-pattern="BOOLEAN"/>
+</column>
+</column-list>
+<primary-key id="962b65e:1428ee8b079:-7fe4" name="PK_ATTRIBUTE">
+<primary-key-column name="ATTRID"/>
+</primary-key>
+</table>
+<table alias="OBJECT_TREE" id="33bf4074:142b8290867:-7ff8" name="OBJECT_TREE">
+<column-list>
+<column alias="TREEID" auto-increment="true" column-size="10" decimal-digits="0" default-value="" id="33bf4074:142b8290867:-7ff2" mandatory="true" name="TREEID">
+<data-type name="INT" selected-variant-pattern="INT(%n) UNSIGNED"/>
+</column>
+<column alias="PARENT_OID" auto-increment="false" column-size="10" decimal-digits="0" default-value="" id="33bf4074:142b8290867:-7ff1" mandatory="false" name="PARENT_OID">
+<data-type name="INT" selected-variant-pattern="INT(%n) UNSIGNED"/>
+</column>
+<column alias="CHILD_OID" auto-increment="false" column-size="10" decimal-digits="0" default-value="" id="33bf4074:142b8290867:-7ff0" mandatory="false" name="CHILD_OID">
+<data-type name="INT" selected-variant-pattern="INT(%n) UNSIGNED"/>
+</column>
+<column alias="ROOT_OID" auto-increment="false" column-size="10" decimal-digits="0" default-value="" id="33bf4074:142b8290867:-7fef" mandatory="true" name="ROOT_OID" remarks="ROOT_OID">
+<data-type name="INT" selected-variant-pattern="INT(%n) UNSIGNED"/>
+</column>
+<column auto-increment="false" column-size="10" decimal-digits="0" default-value="" id="3e4b65e6:1437bba26c1:-7f13" mandatory="true" name="VERSIONID">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER(%n)"/>
+</column>
+</column-list>
+<primary-key id="33bf4074:142b8290867:-7ff7" name="PK_OBJECT_TREE">
+<primary-key-column name="TREEID"/>
+</primary-key>
+<foreign-key-list>
+<foreign-key id="33bf4074:142b8290867:-7f07" name="FK_CHILD_OBJECT_TREE" on-delete="UNSPECIFIED" on-update="UNSPECIFIED" referenced-key="PK_OBJECT" referenced-table="OBJECT" referenced-table-schema="ECM_META" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="">
+<foreign-key-column column-name="CHILD_OID" referenced-key-column-name="OID"/>
+</foreign-key>
+<foreign-key id="33bf4074:142b8290867:-7f56" name="FK_PARENT_OBJECT_TREE" on-delete="UNSPECIFIED" on-update="UNSPECIFIED" referenced-key="PK_OBJECT" referenced-table="OBJECT" referenced-table-schema="ECM_META" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="">
+<foreign-key-column column-name="PARENT_OID" referenced-key-column-name="OID"/>
+</foreign-key>
+<foreign-key alias="FK_ROOT_OBJECT_TREE" id="33bf4074:142b8290867:-7ec6" name="FK_ROOT_OBJECT_TREE" on-delete="UNSPECIFIED" on-update="UNSPECIFIED" referenced-key="PK_OBJECT" referenced-table="OBJECT" referenced-table-schema="ECM_META" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="">
+<foreign-key-column column-name="ROOT_OID" referenced-key-column-name="OID"/>
+</foreign-key>
+<foreign-key id="3e4b65e6:1437bba26c1:-7f15" name="FK_OBJECT_TREE_4" on-delete="UNSPECIFIED" on-update="UNSPECIFIED" referenced-key="PK_OBJECT_VERSION" referenced-table="OBJECT_VERSION" referenced-table-schema="DEFAULT" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="">
+<foreign-key-column column-name="VERSIONID" referenced-key-column-name="VERSIONID"/>
+</foreign-key>
+</foreign-key-list>
+</table>
+</table-list>
+</schema>
+</schema-list>
+</database-model>
+<diagram>
+<table-figure height="103" refid="33bf4074:142b8290867:-7e37" width="287" x="708" y="151"/>
+<table-figure height="105" refid="3e4b65e6:1437bba26c1:-7fd7" width="225" x="381" y="200"/>
+<table-figure height="92" refid="3e4b65e6:1437bba26c1:-7fcf" width="197" x="316" y="417"/>
+<table-figure height="77" refid="3e4b65e6:1437bba26c1:-7ede" width="206" x="998" y="39"/>
+<table-figure height="119" refid="226fd561:1438a7455fa:-7fe3" width="275" x="680" y="605"/>
+<table-figure height="117" refid="226fd561:1438a7455fa:-7f4c" width="229" x="372" y="603"/>
+<table-figure height="123" refid="226fd561:1438a7455fa:-7ef8" width="205" x="49" y="603"/>
+<table-figure height="124" refid="962b65e:1428ee8b079:-7fff" width="221" x="93" y="154"/>
+<table-figure height="215" refid="962b65e:1428ee8b079:-7fe5" width="281" x="856" y="308"/>
+<table-figure height="109" refid="33bf4074:142b8290867:-7ff8" width="223" x="417" y="19"/>
+<fk-figure refid="33bf4074:142b8290867:-7ec6">
+<source-terminal x="79" y="122"/>
+</fk-figure>
+</diagram>
+</clay-model>

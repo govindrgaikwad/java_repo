@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jee="http://www.springframework.org/schema/jee" xmlns:repository="http://www.springframework.org/schema/data/repository"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd
+		http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-3.2.xsd
+		http://www.springframework.org/schema/data/repository http://www.springframework.org/schema/data/repository/spring-repository-1.4.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.2.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.2.xsd
+		http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa-1.2.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.2.xsd">
+
+	<context:annotation-config />
+
+
+	<context:component-scan base-package="com.tmg.uifwk" />
+
+	<jpa:repositories base-package="com.tmg.uifwk.repository"
+		query-lookup-strategy="create-if-not-found" />
+
+	<context:property-placeholder
+		ignore-unresolvable="true" location="classpath*:/uifwk-config.properties" />
+
+	<aop:aspectj-autoproxy proxy-target-class="true" />
+	<bean id="timingAspect" class="com.tmg.uifwk.aspect.TimingAspect" />
+	<!-- <jee:jndi-lookup id="uifwkDS" jndi-name="java:comp/env/jdbc/UIFrameworkDS" 
+		/> -->
+	<bean id="uifwkDS" class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName" value="${uifwk.database.driver}" />
+		<property name="url" value="${uifwk.database.url}" />
+		<property name="username" value="${uifwk.database.username}" />
+		<property name="password" value="${uifwk.database.password}" />
+		<property name="poolPreparedStatements" value="true" />
+	</bean>
+
+	<bean id="jpaDialect" class="org.springframework.orm.jpa.vendor.HibernateJpaDialect" />
+
+
+	<bean id="jpaVendorAdapter"
+		class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+		<property name="database" value="SQL_SERVER" />
+		<property name="databasePlatform" value="org.hibernate.dialect.SQLServer2008Dialect" />
+	</bean>
+
+	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+		<property name="entityManagerFactory" ref="entityManagerFactory" />
+		<property name="dataSource" ref="uifwkDS" />
+		<property name="jpaDialect" ref="jpaDialect" />
+	</bean>
+
+	<tx:annotation-driven transaction-manager="transactionManager" />
+
+
+	<bean id="entityManagerFactory"
+		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+		<property name="dataSource" ref="uifwkDS" />
+		<property name="packagesToScan" value="com.tmg.uifwk.orm"></property>
+		<property name="jpaVendorAdapter" ref="jpaVendorAdapter" />
+		<property name="jpaProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.SQLServer2008Dialect</prop>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.cache.use_second_level_cache">true</prop>
+				<prop key="hibernate.cache.use_query_cache">true</prop>
+				<prop key="hibernate.cache.region.factory_class">org.hibernate.cache.ehcache.EhCacheRegionFactory
+				</prop>
+			</props>
+		</property>
+		<property name="jpaDialect" ref="jpaDialect" />
+	</bean>
+
+	<bean id="entityManager"
+		class="org.springframework.orm.jpa.support.SharedEntityManagerBean">
+		<property name="entityManagerFactory" ref="entityManagerFactory" />
+	</bean>
+
+	<util:map id="impExpProcessors">
+		<entry key="FormDesignProcess" value-ref="FormDesignProcess" />
+		<entry key="FormDesignVersionProcess" value-ref="FormDesignVersionProcess" />
+		<entry key="GenericUIElementProcess" value-ref="GenericUIElementProcess" />
+		<entry key="RepeaterUIElementProcess" value-ref="RepeaterUIElementProcess" />
+		<entry key="SectionUIElementProcess" value-ref="SectionUIElementProcess" />
+		<entry key="TabUIElementProcess" value-ref="TabUIElementProcess" />
+		<entry key="TextBoxUIElementProcess" value-ref="TextBoxUIElementProcess" />
+		<entry key="RadioButtonUIElementProcess" value-ref="RadioButtonUIElementProcess" />
+		<entry key="DropDownUIElementProcess" value-ref="DropDownUIElementProcess" />
+		<entry key="CheckBoxUIElementProcess" value-ref="CheckBoxUIElementProcess" />
+		<entry key="CalendarUIElementProcess" value-ref="CalendarUIElementProcess" />
+		<entry key="ValidatorProcess" value-ref="ValidatorProcess" />
+	</util:map>
+
+
+
+</beans>

@@ -1,0 +1,100 @@
+package ${BasePackage}.v${Version}.${PackageName};
+
+import java.util.List;
+import java.util.ArrayList;
+
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import com.tmg.uifwk.codegenerator.BaseData;
+
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(name = "$ClassName", namespace = "${Namespace}")
+@XmlRootElement(name = "$ClassName", namespace = "${Namespace}")
+public class $ClassName extends BaseData  {
+
+   public $ClassName () {
+   		super();
+   }
+   
+   public void initialize (boolean init) {
+   		if(init) {
+#foreach( $relationship in $Relationships )
+	#if ( $relationship.cardinality == "O" )
+	{
+	this.${relationship.name} = new ${relationship.type}();
+	this.${relationship.name}.initialize(init);
+	}		
+	#elseif ( $relationship.cardinality == "M" )
+	{
+	$relationship.name = new ArrayList<$relationship.type>();
+	${relationship.type} temp = new ${relationship.type}();
+	temp.initialize(init);
+	this.add${relationship.name}(temp);
+	}	
+	#end
+#end   			
+   		}
+   }
+
+#foreach( $attribute in $Attributes )
+	@XmlElement(name = "$attribute.name")
+	private $attribute.dataType $attribute.name;
+#end
+#foreach( $relationship in $Relationships )
+	//@XmlRootElement(name="$relationship.name")
+	@XmlElement(name = "$relationship.name")
+	#if ( $relationship.cardinality == "O" )
+	private $relationship.type $relationship.name;
+	#elseif ( $relationship.cardinality == "M" )
+	private List<$relationship.type> $relationship.name;
+	#end
+#end
+
+#foreach( $attribute in $Attributes )
+	@JsonProperty("${attribute.name}")
+	public void set$attribute.name ($attribute.dataType $attribute.name) {
+		this.$attribute.name = $attribute.name;
+	}
+	
+	@JsonProperty("${attribute.name}")
+	public $attribute.dataType get$attribute.name (){
+		return this.$attribute.name;
+	}
+#end
+#foreach( $relationship in $Relationships )
+	#if ( $relationship.cardinality == "O" )
+	@JsonProperty("${relationship.type}")
+	public void set$relationship.name ($relationship.type $relationship.name) {
+		this.$relationship.name = $relationship.name;
+	}
+	
+	@JsonProperty("${relationship.type}")
+	public $relationship.type get$relationship.name (){
+		return this.$relationship.name;
+	}
+	#elseif ( $relationship.cardinality == "M" )
+	@JsonProperty("${relationship.name}")
+	public void set$relationship.name (List<$relationship.type> $relationship.name) {
+		this.$relationship.name = $relationship.name;
+	}
+	
+	@JsonProperty("${relationship.name}")
+	public List<$relationship.type> get$relationship.name (){
+		return this.$relationship.name;
+	}
+	
+	public void add$relationship.name ($relationship.type $relationship.name) {
+	    if(this.${relationship.name} == null) {
+	    	this.${relationship.name} = new ArrayList<$relationship.type> ();
+	    }
+		this.${relationship.name}.add($relationship.name);
+	}
+	#end
+#end	
+}

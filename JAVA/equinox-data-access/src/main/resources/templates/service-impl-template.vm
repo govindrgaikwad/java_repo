@@ -1,0 +1,60 @@
+package ${BasePackage}.v${Version}.${PackageName};
+
+import java.util.List;
+
+import javax.jws.WebMethod;
+import javax.jws.WebParam;
+import javax.jws.WebResult;
+import javax.jws.WebService;
+import javax.xml.ws.BindingType;
+import javax.xml.bind.annotation.XmlSeeAlso;
+
+import javax.tools.JavaFileManager;
+
+
+import com.tmg.uifwk.codegenerator.*;
+import com.tmg.uifwk.dao.DataDao;
+
+
+@WebService(name = "${ClassName}", serviceName = "${ClassName}", endpointInterface = "${BasePackage}.v${Version}.${PackageName}.${ClassName}", targetNamespace = "${Namespace}")
+@BindingType(javax.xml.ws.soap.SOAPBinding.SOAP12HTTP_BINDING)
+@XmlSeeAlso({#foreach( $method in $Methods ) ${method.returnType}.class #set($count = ${Methods.size()} - 1 )#if($foreach.index < $count), #end #end})
+public class ${ClassName}Impl implements ${ClassName} {
+
+    private static ServiceGenerator serviceGenerator;
+    
+    private String versionString = "${VersionString}";
+   
+    #foreach( $method in $Methods )
+    private ${method.returnType} ${method.name} = new ${method.returnType} () ;
+    #end
+   
+	
+	#foreach( $method in $Methods )
+	@WebMethod(operationName = "${method.name}", action = "${method.name}")
+	public @WebResult(name = "${method.returnType}") ${method.returnType} ${method.name} ( @WebParam(name = "${method.returnType}ID") Long ${method.returnType}ID){
+			//System.out.println("The ServiceGenerator is:"+this.serviceGenerator); 
+			${method.returnType} ${method.returnType} = new ${method.returnType} ();
+			
+			try{
+			//JavaFileManager javaFileManager = serviceGenerator.getFileManager();
+			DataDao sectionDao = new DataDao();
+			sectionDao.setServiceGenerator(serviceGenerator);
+			${method.returnType} = (${method.returnType}) sectionDao.getData(${method.returnType}, versionString, ${method.returnType}ID ) ;
+		}catch(Exception e) {
+		e.printStackTrace();
+		}
+			
+			return ${method.returnType};
+		}
+	#end
+	public void setServiceGenerator(ServiceGenerator serviceGenerator) {
+		this.serviceGenerator = serviceGenerator;
+	}
+	
+	public ServiceGenerator setServiceGenerator() {
+		return this.serviceGenerator;
+	}
+	
+	
+}
