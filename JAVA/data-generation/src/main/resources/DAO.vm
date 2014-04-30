@@ -1,0 +1,6 @@
+package ${PackageName};
+
+public interface $InterfaceName {
+
+   
+}ss
