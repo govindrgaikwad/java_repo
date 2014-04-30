@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN"
+        "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
+<tiles-definitions>
+
+	<!-- Master -->
+	<definition name="master.page" template="/public/template/master.jsp">
+		<put-attribute name="header" value="/public/template/header.jsp" />
+		<put-attribute name="footer" value="/public/template/footer.jsp" />
+	</definition>
+
+	<!-- Pages -->
+
+
+	<definition name="society" extends="master.page">
+		<put-attribute name="footer" value="" />
+		<put-attribute name="body" value="/public/society.jsp" />
+	</definition>
+
+	<definition name="aboutus" extends="master.page">
+		<put-attribute name="footer" value="" />
+		<put-attribute name="body" value="/public/aboutus.jsp" />
+	</definition>
+
+	<definition name="team" extends="master.page">
+		<put-attribute name="footer" value="" />
+		<put-attribute name="body" value="/public/team.jsp" />
+	</definition>
+
+
+	<definition name="newsevents" extends="master.page">
+		<put-attribute name="footer" value="" />
+		<put-attribute name="body" value="/public/newsevents.jsp" />
+	</definition>
+
+	<definition name="contactus" extends="master.page">
+		<put-attribute name="footer" value="" />
+		<put-attribute name="body" value="/public/contactus.jsp" />
+	</definition>
+
+	<definition name="login" extends="master.page">
+		<put-attribute name="footer" value="" />
+		<put-attribute name="body" value="/public/login.jsp" />
+	</definition>
+
+	<definition name="registration" extends="master.page">
+		<put-attribute name="footer" value="" />
+		<put-attribute name="body" value="/public/registration.jsp" />
+	</definition>
+
+
+	<definition name="admin.master.page" template="/admin/template/master.jsp">
+		<put-attribute name="sidebar" value="/admin/template/sidebar-menu.jsp" />
+		<put-attribute name="messages" value="/admin/template/messages.jsp" />
+		<put-attribute name="notifications" value="/admin/template/notifications.jsp" />
+		<put-attribute name="tasks" value="/admin/template/tasks.jsp" />
+		<put-attribute name="loggedInUser" value="/admin/template/logged-in-user.jsp" />
+		<put-attribute name="body" value="/admin/template/sample-body.jsp" />
+	</definition>
+
+	<definition name="admin.soc.info" extends="admin.master.page">
+		<put-attribute name="body" value="/admin/pages/society-info.jsp" />
+	</definition>
+
+</tiles-definitions>
