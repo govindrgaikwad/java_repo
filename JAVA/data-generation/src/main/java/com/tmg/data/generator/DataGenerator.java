@@ -3,6 +3,7 @@ package com.tmg.data.generator;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.DatabaseMetaData;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -21,7 +22,7 @@ public class DataGenerator {
 		try {
 			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 			conn = DriverManager.getConnection(
-					"jdbc:sqlserver://192.168.100.46; database=UIFramework",
+					"jdbc:sqlserver://192.168.100.46",
 					"ebs", "ebs@123");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -66,12 +67,26 @@ public class DataGenerator {
 		List<String> list = new ArrayList<String>();
 		try {
 			connection = this.getConnection();
-			Statement st = connection.createStatement();
-			String query = "SELECT name FROM sys.tables";
-			ResultSet rs = st.executeQuery(query);
-			while (rs.next()) {
-				list.add(rs.getString(1));
+			DatabaseMetaData data = connection.getMetaData();
+			
+			 ResultSet res = data.getCatalogs();
+		      System.out.println("List of databases: "); 
+		      while (res.next()) {
+		         System.out.println("   "
+		           +res.getString("TABLE_CAT"));
+		      }
+		      
+		      
+			ResultSet rs= data.getTables(null, null, null,  new String[] {"TABLE"});
+			while(rs.next())
+			{
+				System.out.println(rs.getString("TABLE_CAT") );
+				System.out.println(rs.getString("TABLE_SCHEM"));
+				System.out.println(rs.getString("TABLE_NAME"));
+				System.out.println(rs.getString("TABLE_TYPE"));
 			}
+			
+			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

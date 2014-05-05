@@ -1,0 +1,78 @@
+package $PackageName;
+
+import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+@Entity
+@Table(schema = "$Table.tableSchema", name = "$Table.tableName")
+public class $Table.tableName{
+
+	#foreach( $attribute in $Table.attributes )
+	
+	  #if($attribute.primaryKey == "true")
+	  @Id
+	  @GeneratedValue(strategy = GenerationType.IDENTITY)
+	  @Column(name = "$attribute.name")
+	  private $attribute.dataType $attribute.name;
+	
+	  #elseif($attribute.foreignKey == "true")
+	  @ManyToOne(fetch = FetchType.LAZY)
+	  @JoinColumn(name = "$attribute.name")
+	  private $attribute.referenceTableName $attribute.referenceTableName;
+	
+	  #else
+	  @Column(name = "$attribute.name")
+	  private $attribute.dataType $attribute.name;
+	  #end
+	
+	#end
+	
+	#foreach( $table in $Table.referenceTables )
+	@OneToMany(mappedBy = "$table", fetch = FetchType.LAZY)
+	private Set<$table> $table = new HashSet<$table>();
+	
+    #end
+    
+	#foreach( $attribute in $Table.attributes )
+	#if(($attribute.foreignKey == true))
+	public void set$attribute.referenceTableName ($attribute.referenceTableName $attribute.referenceTableName) {
+		this.$attribute.referenceTableName = $attribute.referenceTableName;
+	}
+	
+	public $attribute.referenceTableName get$attribute.referenceTableName (){
+		return this.$attribute.referenceTableName;
+	}
+	#else
+	public void set$attribute.name ($attribute.dataType $attribute.name) {
+		this.$attribute.name = $attribute.name;
+	}
+	
+	public $attribute.dataType get$attribute.name (){
+		return this.$attribute.name;
+	}
+	#end
+    #end
+    
+    #foreach( $table in $Table.referenceTables )
+    
+	public void set$table(Set<$table> $table) {
+		this.$table = $table;
+	}
+
+	public Set<$table> get$table() {
+		return $table;
+	}
+    #end
+	
+}
