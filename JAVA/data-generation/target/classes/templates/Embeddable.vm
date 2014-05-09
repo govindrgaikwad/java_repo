@@ -1,0 +1,31 @@
+package $PackageName;
+
+import java.io.Serializable;
+
+import javax.persistence.Embeddable;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+@Embeddable
+public class $Embeddable.name implements Serializable{
+
+	#foreach( $attribute in $Embeddable.attributes )
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "$attribute.columnName")
+    private $attribute.referenceTableName $attribute.camelCaseTableName;
+	#end
+	
+	#foreach( $attribute in $Embeddable.attributes )
+	
+	public void set$attribute.camelCaseTableName ($attribute.referenceTableName $attribute.camelCaseTableName) {
+       this.$attribute.camelCaseTableName = $attribute.camelCaseTableName;
+    }
+
+    public $attribute.referenceTableName get$attribute.camelCaseName (){
+      return this.$attribute.camelCaseTableName;
+    }
+    #end
+	
+}
