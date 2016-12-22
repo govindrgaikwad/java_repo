@@ -1,0 +1,12 @@
+<accounts>
+	<account>
+		<acno>123</acno>
+		<name>nil</name>
+		<bal>5665656</bal>
+	</account>
+	<account>
+		<acno>126</acno>
+		<name>nilesh</name>
+		<bal>5665655566</bal>
+	</account>
+</accounts>

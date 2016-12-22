@@ -1,0 +1,11 @@
+db :
+  url : jdbc:mysql://localhost:3306/trainingdb
+  username : root
+  password : root
+  driverClassName : com.mysql.jdbc.Driver
+
+security :
+  username : scott
+  password : tiger
+  timeout : 
+    minutes : 30

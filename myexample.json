@@ -1,0 +1,34 @@
+[
+  [
+    {
+      "price": "0",
+      "date": "2015/03/20",
+      "from": "mua",
+      "seats": "0",
+      "airline": "UNITED",
+      "type": "ER38sd",
+      "dest": "SFO"
+    },
+    {
+      "price": "945",
+      "date": "2015/09/11",
+      "from": "mua",
+      "seats": "54",
+      "airline": "UNITED",
+      "type": "ER39rk",
+      "dest": "SFO"
+    },
+    {
+      "price": "954",
+      "date": "2015/02/12",
+      "from": "mua",
+      "seats": "23",
+      "airline": "UNITED",
+      "type": "ER39rj",
+      "dest": "SFO"
+    }
+  ],
+  {
+    "size": 3
+  }
+]

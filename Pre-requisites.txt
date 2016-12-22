@@ -1,0 +1,8 @@
+Pre-requisites:
+========================================================
+1. Knowledge on any OOPs(like Java) programming language
+2. Knowledge on Web services (SOAP and REST)
+3. Knowledge on JMS(MOM server) concepts
+4. Basic XML knowledge
+5. Basic HTML and JS knowledge
+6. Basic database queries

@@ -1,0 +1,45 @@
+Mule Agenda:
+============
+
+Day 1:
+======
+What and why Mule?
+
+Basic building blocks of Mule
+
+Flow, Message Processor, Flow variable, session variable, Properties
+
+How to consume Web Services
+
+Cont. How to consume Web Services
+
+Day 2:
+======
+
+Connecting to addtional resources
+
+Basic transformations
+
+Day 3:
+======
+Advanced transformations
+
+Refactoring Mule application
+
+Java code
+
+Performance tuning
+
+Handling errors
+
+Day 4:
+======
+Controlling message flow
+
+Mule Batch jobs
+
+Buling RESTful interfaces with RAML and APIKit
+
+Deploying applications
+
+

@@ -1,0 +1,27 @@
+#%RAML 0.8
+---
+title: Jukebox API
+baseUri: http://jukebox.api.com
+version: v1
+/songs: 
+  get: 
+  post: 
+  /{songid}: 
+    get: 
+    /file-content:
+      get: 
+      post: 
+/artists:
+  get: 
+  post: 
+  /{artistId}:
+    get: 
+    /albums:
+      get: 
+/albums:
+  get: 
+  post: 
+  /{albumId}:
+    get: 
+    /songs:
+      get:              

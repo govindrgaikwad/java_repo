@@ -1,0 +1,32 @@
+<flights size="3">
+  <flight dest="SFO">
+    <myPrice>0</myPrice>
+    <depDate>2015/03/20</depDate>
+    <origin>mua</origin>
+    <emptySeats>0</emptySeats>
+    <planeDetails planeCode="ER38sd">
+      <airline>UNITED</airline>
+      <flightType>Boing 737</flightType>
+    </planeDetails>
+  </flight>
+  <flight dest="SFO">
+    <myPrice>945</myPrice>
+    <depDate>2015/09/11</depDate>
+    <origin>mua</origin>
+    <emptySeats>54</emptySeats>
+    <planeDetails planeCode="ER39rk">
+      <airline>UNITED</airline>
+      <flightType>Boing 757</flightType>
+    </planeDetails>
+  </flight>
+  <flight dest="SFO">
+    <myPrice>954</myPrice>
+    <depDate>2015/02/12</depDate>
+    <origin>mua</origin>
+    <emptySeats>23</emptySeats>
+    <planeDetails planeCode="ER39rj">
+      <airline>UNITED</airline>
+      <flightType>Boing 777</flightType>
+    </planeDetails>
+  </flight>
+</flights>

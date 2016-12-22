@@ -1,0 +1,96 @@
+#%RAML 0.8
+---
+title: Jukebox API
+baseUri: http://jukebox.api.com
+version: v1
+/songs:   
+  description: Collection of available Songs in Jukebox.
+  get:
+    description: Get a list of Songs.
+    queryParameters:
+        query:
+          description: |
+            JSON array [{"field1","value1","operator1"},{"field2","value2","operator2"},...,{"fieldN","valueN","operatorN"}] with valid searchable fields: songTitle
+          example: |
+            "[\"songTitle\", \"Show me the meaning\", \"like\"]"
+        orderBy:
+          description: |
+            Order by field: songTitle
+          type: string
+          required: false
+        order:
+          description: Order
+          enum: [desc, asc]
+          default: desc
+          required: false
+        offset:
+          description: Skip over a number of elements by specifying an offset value for the query
+          type: integer
+          required: false
+          example: 20
+          default: 1
+        limit:
+          description: Limit the number of elements on the response
+          type: integer
+          required: false
+          example: 80
+          default: 20
+          
+    responses:
+      200:
+        body:
+          application/json:
+            example: |
+              !include jukebox-include-songs.sample                 
+  post:
+    description: Add a new song to Jukebox.
+    queryParameters: 
+      access_token:
+            description: "The access token provided by the authentication application"
+            example: AABBCCDD
+            required: true
+            type: string
+    body: 
+      application/json: 
+        example: |
+           !include jukebox-include-song-new.sample
+        schema: !include jukebox-include-song.schema
+    responses: 
+      200: 
+        body: 
+          application/json: 
+            example: |
+              { "message": "The song has been properly entered" }
+  /{songid}: 
+    get: 
+      description: |
+          Get the Song
+          with songId ={songId}
+      responses:
+          200:
+            body:
+              application/json:
+                example: |
+                  !include jukebox-include-song-retrieve.sample
+          404:
+            body:
+              application/json:
+                example: |
+                  {"message": "song not found" }
+    /file-content:
+      get: 
+      post:
+/artists:
+  get: 
+  post: 
+  /{artistId}:
+    get: 
+    /albums:
+      get: 
+/albums:
+  get: 
+  post: 
+  /{albumId}:
+    get: 
+    /songs:
+      get:              

@@ -1,0 +1,32 @@
+Mule Server EE Vs Mule Server CE
+=========================================================
+https://www.mulesoft.com/platform/soa/mule-esb-enterprise
+
+Java OOPs concepts:
+============================================
+http://www.javatpoint.com/java-oops-concepts
+
+JMS(MOM) concepts:
+======================================
+http://www.javatpoint.com/jms-tutorial
+
+Basic XML tutorial:
+=============================
+http://www.w3schools.com/xml/
+
+Basic HTML tutorial:
+==============================
+http://www.w3schools.com/html/
+
+Basic JS tutorial:
+============================
+http://www.w3schools.com/js/
+
+SOAP Web Services Tutorial:
+===========================================
+http://www.javatpoint.com/soap-web-services
+
+RESTful Web Services Tutorial:
+==============================================
+http://www.javatpoint.com/restful-web-services
+
