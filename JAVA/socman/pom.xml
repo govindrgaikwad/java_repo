@@ -9,7 +9,7 @@
 
 
 	<properties>
-		<spring.version>3.2.2.RELEASE</spring.version>
+		<spring.version>5.3.18</spring.version>
 		<spring.security.version>3.2.0.RELEASE</spring.security.version>
 		<junit.version>4.11</junit.version>
 		<cxf.version>2.7.5</cxf.version>
