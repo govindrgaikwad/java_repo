@@ -8,7 +8,7 @@
 	<name>DataProvider Web Application</name>
 
 	<properties>
-		<spring.version>3.2.2.RELEASE</spring.version>
+		<spring.version>5.3.19</spring.version>
 		<junit.version>4.11</junit.version>
 		<cxf.version>2.7.5</cxf.version>
 		<log4j.version>1.2.17</log4j.version>
